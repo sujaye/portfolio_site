@@ -2,13 +2,13 @@
 <!doctype html>
 <html lang="en">
   <head>
-    {% load staticfiles %}
+      {% load staticfiles %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Sujay's</title>
+    <title>Sujay's Blogs</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -45,7 +45,7 @@
         <a class="nav-link" href="{% static 'resume.pdf' %}" target="_blank">Resume</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'allblogs' %}">Blog</a>
+        <a class="nav-link active" href="{% url 'allblogs' %}">Blog</a>
       </li>
     </ul>
   </div>
@@ -53,36 +53,28 @@
 </header>
 
 <main role="main">
-
-  <section class="jumbotron text-center">
     <div class="container">
-      <h1 class="jumbotron-heading">Hi I'm Sujayeendra.</h1>
-        <p class="lead text-muted">Hey my name is Sujay and I love to make Django Web Applications.<br /><h5>Explicit is better that Implicit.</h5><p>
-      <p>
-      <a href="mailto:sujay@technodreamsit.com" class="btn btn-primary my-2">Email</a>
-      </p>
-      <img class="img-fluid" width="50%" height="200" src="{% static 'sujay.jpeg'%}" />
+        <h1 class="text-center pt-3">This is Sujay's Blog</h1>
+        <br />
+        <br />
+        <br />
+        <h1>Latest Posts</h1>
+        <hr />
     </div>
-  </section>
-
-  <div class="album py-5 bg-light">
     <div class="container">
-
-      <div class="row">
-        {% for job in job.all %}
+        {% for blog in blogs.all %}
         <div class="col-md-4">
+            <a href="{% url 'detail' blog.id %}"><h3>{{ blog.title }}</h3></a>
+            <p>{{ blog.pub_date_pretty }}</p>
           <div class="card mb-4 shadow-sm">
-            <a href="#"><img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{ job.image.url }}" /></a>
+            <img class="img-fluid" width="200%" height="200" src="{{ blog.image.url }}" />
             <div class="card-body">
-              <p class="card-text"><b><a href="#">{{ job.summary_pretty }}</a></b></p>
+              <p class="card-text"><b>{{ blog.summary }}</b></p>
             </div>
           </div>
         </div>
         {% endfor %}
       </div>
-    </div>
-  </div>
-
 </main>
 
 <footer class="text-muted">
